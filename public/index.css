@@ -59,7 +59,7 @@ li {
 }
 
 #fetchBtn {
-  display: flexbox;
+  display: flex;
   flex-wrap: wrap;
   justify-content: left;
   text-decoration: underline;
@@ -77,7 +77,7 @@ li {
 }
 
 #bestQuote {
-  display: flexbox;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   text-decoration: underline;
@@ -93,7 +93,7 @@ li {
 }
 
 #refreshBtn {
-  display: flexbox;
+  display: flex;
   flex-wrap: wrap;
   justify-content: right;
   text-decoration: underline;
