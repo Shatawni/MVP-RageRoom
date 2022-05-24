@@ -1,8 +1,9 @@
-DROP DATABASE IF EXISTS rageRoomdb;
-
-CREATE DATABASE rageRoomdb;
-
+DROP DATABASE IF EXISTS rageroomdb;
 DROP TABLE IF EXISTS customers;
+
+CREATE DATABASE rageroomdb;
+
+\c rageroomdb
 
 CREATE TABLE customers(
    id SERIAL PRIMARY KEY NOT NULL,
