@@ -59,6 +59,9 @@ li {
 }
 
 #fetchBtn {
+  display: flexbox;
+  flex-wrap: wrap;
+  justify-content: left;
   text-decoration: underline;
   background-color: rgb(172, 172, 229);
   color: #ffffff;
