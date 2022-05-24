@@ -31,8 +31,8 @@ app.get("/api/customers/:id", async (req, res) => {
 app.post("/api/customers", async (req, res) => {
   try {
     const data = await pool.query(
-      "INSERT INTO customers(groupName, partySize, roomCategory, timeSlot) VALUES($1, $2, $3, $4)",
-      [req.body.age, req.body.kind, req.body.name]
+      "INSERT INTO customers(groupname, partysize, roomcategory, timeslot) VALUES($1, $2, $3, $4)",
+      [req.body.groupname, req.body.partysize, req.body.roomcategory, req.body.timeslot]
     );
     res.send(req.body);
   } catch (err) {
@@ -40,28 +40,18 @@ app.post("/api/customers", async (req, res) => {
   }
 });
 
-// app.patch("/api/customers/:id", async (req, res) => {
-//   try {
-//     const data = await pool.query("UPDATE customers SET name = $1 WHERE id = $2;", [
-//       req.body.name,
-//       req.params.id,
-//     ]);
-//     res.send(req.body);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// });
 app.patch('/api/customers/:id', async (req, res) => {
     try {
-        const { groupName, partySize, roomCategory, timeSlot } = req.body;
+        const { groupname, partysize, roomcategory, timeslot } = req.body;
          const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [req.params.id]);
+         console.log(data.rows[0])
         const updateDB = {
-            groupName: groupName || data.rows[0].groupName,
-            partySize: partySize || data.rows[0].partySize,
-            roomCategory: roomCategory || data.rows[0].roomCategory,
-            timeSlot: timeSlot || data.rows[0].timeSlot
+            groupname: groupname || data.rows[0].groupname,
+            partysize: partysize || data.rows[0].partysize,
+            roomcategory: roomcategory || data.rows[0].roomcategory,
+            timeslot: timeslot || data.rows[0].timeslot
         }
-        const updateCustomers = await pool.query(`UPDATE customers SET groupName = $1, partySize = $2, roomCategory = $3, timeSlot = $4 WHERE id = $5 RETURNING *`, [updateDB.groupName, updateDB.partySize, updateDB.roomCategory, updateDB.timeSlot, req.params.id])
+        const updateCustomers = await pool.query(`UPDATE customers SET groupname = $1, partysize = $2, roomcategory = $3, timeslot = $4 WHERE id = $5 RETURNING *`, [updateDB.groupname, updateDB.partysize, updateDB.roomcategory, updateDB.timeslot, req.params.id])
         res.json(updateCustomers.rows[0])
     } catch (err) {
         console.error(err.message)
