@@ -25,6 +25,9 @@ body {
 }
 
 #secondH1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   color: rgb(200, 20, 188);
   font-size: 25px;
   text-shadow: 2px 2px #4e2b49;
@@ -34,7 +37,7 @@ body {
   ); */
   border-left-color: aliceblue;
   margin-top: -25px;
-  margin-left: 75px;
+  margin: auto;
   font-family: 'Aclonica', sans-serif;
 }
 
