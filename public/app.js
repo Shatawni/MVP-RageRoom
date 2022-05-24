@@ -37,8 +37,7 @@ function fetchAPI() {
   }
 
 function getBestQuote() {
-    var audio = new Audio("HowSway.mp3");
-    audio.play();
+    
     document.querySelector("body").style.visibility = "hidden";
     document.querySelector("#secondH1").style.visibility = "visible";
     var button = document.getElementById("refreshBtn");
