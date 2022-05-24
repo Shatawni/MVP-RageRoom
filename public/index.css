@@ -77,6 +77,9 @@ li {
 }
 
 #bestQuote {
+  display: flexbox;
+  flex-wrap: wrap;
+  justify-content: center;
   text-decoration: underline;
   background-color: rgb(172, 172, 229);
   color: #ffffff;
@@ -90,6 +93,9 @@ li {
 }
 
 #refreshBtn {
+  display: flexbox;
+  flex-wrap: wrap;
+  justify-content: right;
   text-decoration: underline;
   background-color: rgb(172, 172, 229);
   color: #ffffff;
