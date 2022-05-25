@@ -3,19 +3,15 @@
       margin-bottom: 10px;
       margin-left: 50px;
       margin-right: 5px; */
-  
-  text-align: center;
+      margin-left: 80px;
+      margin-right: -10px;
+   text-align: center;
   border: 10px;
   border-style: solid;
   border-color: rgb(205, 205, 242);
-  background-size: 500px;
   background-color: rgb(39, 246, 239);
 }
 
-.flexbox-item-1 {
-  flex-wrap: wrap;
-  justify-content: center;
-}
 
 #firstH1 {
   color: rgb(205, 205, 242);
@@ -34,16 +30,10 @@
   flex-wrap: wrap;
   justify-content: center;
   color: rgb(200, 20, 188);
-  font-size: 25px;
-  text-shadow: 2px 2px #4e2b49;
-  /* background: -webkit-linear-gradient(
-    rgba(121, 7, 192, 0.473),
-    rgb(203, 158, 100)
-  ); */
-  border-left-color: aliceblue;
-  margin-top: -25px;
-  margin: auto;
+  font-size: 30px;
+  text-shadow: 2px 2px #2b1d2d;
   font-family: 'Aclonica', sans-serif;
+  margin-top: -15px;
 }
 
 ul {
@@ -107,11 +97,4 @@ li {
   font-size: 22px;
   font-family: monospace;
   box-shadow: 5px 5px lavender;
-}
-
-#memeContainer {
-  /* position: absolute;
-  bottom: 15px;
-  left: 10px;
-  box-shadow: 25px 25px black; */
 }
