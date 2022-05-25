@@ -3,6 +3,7 @@ body {
   margin-bottom: 10px;
   margin-left: 50px;
   margin-right: 5px; */
+  text-align: center;
   margin-bottom: 10px;
   margin: auto;
   border: 10px;
@@ -56,6 +57,13 @@ li {
   background-color: rgb(222, 183, 132);
   border-style: solid;
   border-color: maroon;
+}
+
+div#buttonContainer {
+  text-align: center;
+  border:rgb(190, 134, 221);
+  height: 40px;
+  width: 50px;
 }
 
 #fetchBtn {
