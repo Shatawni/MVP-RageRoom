@@ -5,6 +5,7 @@ function loadPage() {
   var divMeme = document.getElementById("memeContainer");
   var ul = document.createElement("ul");
   var button = document.getElementById("bestQuote");
+  var divForm = document.getElementsByClassName("center-hideform");
 
   document.getElementById("secondH1").style.visibility = "hidden";
   document.getElementById("memeContainer").style.visibility = "hidden";
@@ -13,7 +14,7 @@ function loadPage() {
 
   document.getElementById("fetchBtn").addEventListener("click", fetchAPI);
   document.getElementById("bestQuote").addEventListener("click", getBestQuote);
-
+  document.getElementById("close").addEventListener("click", closeForm);
   var quoteList = [];
 
 
@@ -43,5 +44,9 @@ function getBestQuote() {
     document.getElementById("refreshBtn").style.visibility = "visible";
     document.querySelector("#memeContainer").style.visibility = "visible";
     document.querySelector("#ulContainer").style.visibility = "hidden";
+  }
+
+  function closeForm(e) {
+    divForm.style.visibility = "hidden";
   }
 }
