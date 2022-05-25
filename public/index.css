@@ -1,16 +1,19 @@
-body {
+.flexbox-container {
   /* margin-top: 50px;
   margin-bottom: 10px;
   margin-left: 50px;
   margin-right: 5px; */
   text-align: center;
-  margin-bottom: 10px;
-  margin: auto;
   border: 10px;
   border-style: solid;
   border-color: rgb(205, 205, 242);
   background-size: 500px;
   background-color: rgb(39, 246, 239);
+}
+
+.flexbox-item-1 {
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #firstH1 {
@@ -72,9 +75,9 @@ div#buttonContainer {
   color: #ffffff;
   border-radius: 35px;
   cursor: grab;
-  margin-top: 70px;
+  /* margin-top: 70px;
   margin-left: 55px;
-  margin-bottom: 15px;
+  margin-bottom: 15px; */
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
@@ -87,8 +90,8 @@ div#buttonContainer {
   color: #ffffff;
   cursor: zoom-in;
   border-radius: 35px;
-  margin-left: 330px;
-  margin-bottom: 15px;
+  /* margin-left: 330px;
+  margin-bottom: 15px; */
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
@@ -101,8 +104,8 @@ div#buttonContainer {
   color: #ffffff;
   border-radius: 35px;
   cursor: wait;
-  margin-left: 450px;
-  margin-bottom: 15px;
+  /* margin-left: 450px;
+  margin-bottom: 15px; */
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
