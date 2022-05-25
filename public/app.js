@@ -1,52 +1,59 @@
-function loadPage() {
+
   var body = document.querySelector("body");
   var h1 = document.getElementById("secondH1");
   var divUl = document.getElementById("ulContainer");
   var divMeme = document.getElementById("memeContainer");
   var ul = document.createElement("ul");
-  var button = document.getElementById("bestQuote");
-  var divForm = document.getElementsByClassName("center-hideform");
+  var button = document.getElementById("roomsBtn");
+  //var divForm = document.getElementsByClassName("center-hideform");
+  // const visitorsBtn = document.querySelector("#visitorsBtn");
+  // console.log(visitorsBtn)
+  document.getElementById("visitorsBtn").addEventListener("click", getData);
+  //document.getElementById("close").addEventListener("click", closeForm);
 
-  document.getElementById("secondH1").style.visibility = "hidden";
-  document.getElementById("memeContainer").style.visibility = "hidden";
-  document.getElementById("ulContainer").style.visibility = "hidden";
-  document.getElementById("musicVideo").style.visibility = "visible";
-
-  document.getElementById("fetchBtn").addEventListener("click", fetchAPI);
-  document.getElementById("bestQuote").addEventListener("click", getBestQuote);
-  document.getElementById("close").addEventListener("click", closeForm);
-  var quoteList = [];
-
-
-
-function fetchAPI() {
-    fetch("https://localhost:3001/api/customers")
-      .then((res) => res.json())
-      .then((data) => {
-        customersList = data;
-        for (var i = 0; i < customersList.length; i++) {
-          var latestCustomersList = document.createElement("li");
-          latestCustomersList.textContent = customersList[i];
-          ul.appendChild(latestCustomersList);
-        }
-        divUl.appendChild(ul);
-        document.body.appendChild(divUl);
-        document.querySelector("#ulContainer").style.visibility = "visible";
-      })
-      .catch((err) => console.log(err));
+    function openForm() {
+    document.getElementById("myForm").style.display = "block ";
+    console.log("Working");
+  }
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
   }
 
-function getBestQuote() {
-    
-    document.querySelector("body").style.visibility = "hidden";
-    document.querySelector("#secondH1").style.visibility = "visible";
-    var button = document.getElementById("refreshBtn");
-    document.getElementById("refreshBtn").style.visibility = "visible";
-    document.querySelector("#memeContainer").style.visibility = "visible";
-    document.querySelector("#ulContainer").style.visibility = "hidden";
-  }
-
-  function closeForm(e) {
-    divForm.style.visibility = "hidden";
-  }
+async function getData() {
+    try {
+        const result = await fetch("http://localhost:3001/api/customers");//CHANGE WHEN DEPLOYED
+        const data = await result.json();
+        console.log(data);
+        const customers = document.createElement("customers")
+        customers.append(data)
+    } catch (error) {
+        console.error(error)
+    }
 }
+
+// function fetchAPI() {
+//     fetch("https://localhost:3001/api/customers")
+  
+
+// function getBestQuote() {
+    
+    // document.querySelector("body").style.visibility = "hidden";
+    // document.querySelector("#secondH1").style.visibility = "visible";
+    // var button = document.getElementById("refreshBtn");
+    // document.getElementById("refreshBtn").style.visibility = "visible";
+    // document.querySelector("#memeContainer").style.visibility = "visible";
+    // document.querySelector("#ulContainer").style.visibility = "hidden";
+
+
+  // function closeForm() {
+  //   divForm.style.visibility = "hidden";
+  // }
+//     $('#show').on('click', function () {
+//     $('.center').show();
+//     $(this).hide();
+// })
+
+$('#close').on('click', function () {
+    $('.center').hide();
+    $('#show').show();
+})

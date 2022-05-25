@@ -5,66 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="chrome">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css" />
+    <script defer src="./app.js"></script>
    
     <title>Document</title>
 </head>
 <body>
   <header></header>
-   <script defer src="./app.js"></script>
   <div id="page-flexbox">
      <div id="sidebyside" class="sideContainer">
        <h1 id="information">Additional Information</h1>
-      <p id="info">Paragraph about the company</p><break></break>
-      <p id="info">Informational link</p><break></break>
-      <p id="info">Blah Blah Blah</p><break></break>
+      <p id="info">Are you angry? Do you sometimes just get the urge to break something? It may not be a good idea to break your own things. However, Bashful doesn't mind if you come and break our things! You can scream, dance, run, jump...let it alll out!</p><break></break>
+      <p id="info"> <a href="https://www.mentalhealth.gov/"></a> Informational link</p><break></break>
+      <button class="open-button" onclick="openForm()">Let's BASH!</button>
     </div>
   <div id="sidebyside" class="flexbox-container">
     <h1 id="firstH1">BASHFUL</h1>
     <h1 id="secondH1">"Come to let off steam and break things!"</h1>
 <div id="memeContainer" class="flexbox-item flexbox-item-1">
       <img
-        width="500"
+      id="picOne"
+        width="400"
         height="300"
-        src="https://media.giphy.com/media/gWHgRIMLEMQ4o/giphy.gif"
+        src="https://res.cloudinary.com/sagacity/image/upload/c_crop,h_587,w_1000,x_0,y_0/c_limit,f_auto,fl_lossy,q_80,w_1080/hou_1116_ise_house_rage_room_fymzoz.jpg"
+      />
+      <img
+      id="picTwo"
+      width="400"
+      height="300"
+      src="http://www.twincities.com/wp-content/uploads/2016/03/3536f07e-404a-4f6f-ad1f-85ae0fe1c3a9.jpg"
       />
      </div>
      <div id="button-container">
-     <div  class="flexbox-item flexbox-item-2">  <button type="button" id="fetchBtn">Kanye said Whaaat?!</button>
-    <button type="button" id="bestQuote">Guess Kanye's BEST quote...</button>
-    <button type="button" id="refreshBtn" onclick="location.reload()">
-      Plz NO MORE!!!
-    </button> </div>
-    <div class="flexbox-item flexbox-item-3">
-      <button type="button" id="fetchBtn">Kanye said Whaaat?!</button>
-    <button type="button" id="bestQuote">Guess Kanye's BEST quote...</button>
-    <button type="button" id="refreshBtn" onclick="location.reload()">
-      Plz NO MORE!!!
-    </button>
+      <button type="button" id="roomsBtn">ROOMS</button>
+      <button type="button" id="reviewsBtn">REVIEWS</button>
+      <button type="button" id="visitorsBtn">LATEST VISITORS</button>
     </div>
     </div>
     <div id="ulContainer" class="flexbox-item flexbox-item-5"></div>
   </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<div class="center hideform">
-    <button id="close" style="float: right;">X</button>
-    <form action="/action_page.php">
+<div class="form-popup" id="myForm">
+    <button type="button" class="btn-cancel" style="float: right;" onclick="closeForm()">X</button>
+    <form action="/action_page.php" class="form-container">
         Group name:<br>
-        <input type="text" name="" value="">
+        <input id="group" type="text" placeholder="Enter Group name" value="">
         <br>
         Party size:<br>
-        <input type="number" name="" value="">
+        <input id="party" type="number" placeholder="Choose Party size" step="1" id="theSize" min="1" max="4">
         <br>
         Room Category:<br>
-        <input type="text" name="" value="">
+        <input id="room" type="text" placeholder="Kitchen, Bedroom, Living room, or Bathroom" value="">
         <br>
         Time Slot:<br>
-        <input type="number" name="" value="">
+        <input id="time" type="number" placeholder="Choose duration" step="30" id="theNumber" min="30" max="90">
         <br><br>
-        <input type="submit" value="Submit">
+        <input id="submit" type="submit" value="Submit">
     </form>
 </div>
-<button id="show">Show form</button>
   <footer></footer>
 </body>
 </html>

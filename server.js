@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.get("/api/customers", async (req, res) => {
   try {
+    await pool.connect();
     const data = await pool.query("SELECT * FROM customers;");
     res.send(data.rows);
   } catch (err) {
