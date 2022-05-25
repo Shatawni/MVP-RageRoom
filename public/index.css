@@ -1,8 +1,9 @@
 .flexbox-container {
-  /* margin-top: 50px;
-  margin-bottom: 10px;
-  margin-left: 50px;
-  margin-right: 5px; */
+      /* margin-top: 50px;
+      margin-bottom: 10px;
+      margin-left: 50px;
+      margin-right: 5px; */
+  
   text-align: center;
   border: 10px;
   border-style: solid;
@@ -62,13 +63,6 @@ li {
   border-color: maroon;
 }
 
-div#buttonContainer {
-  text-align: center;
-  border:rgb(190, 134, 221);
-  height: 40px;
-  width: 50px;
-}
-
 #fetchBtn {
   text-decoration: underline;
   background-color: rgb(172, 172, 229);
@@ -78,6 +72,7 @@ div#buttonContainer {
   /* margin-top: 70px;
   margin-left: 55px;
   margin-bottom: 15px; */
+  margin-left: 55px;
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
@@ -92,6 +87,7 @@ div#buttonContainer {
   border-radius: 35px;
   /* margin-left: 330px;
   margin-bottom: 15px; */
+  margin-left: 330px;
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
@@ -106,6 +102,7 @@ div#buttonContainer {
   cursor: wait;
   /* margin-left: 450px;
   margin-bottom: 15px; */
+  margin-left: 450px;
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
