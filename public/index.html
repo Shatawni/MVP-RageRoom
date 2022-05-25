@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+  <header></header>
   <div id="page-flexbox">
      <div id="sidebyside" class="sideContainer">
        <h1 id="information">Additional Information</h1>
@@ -43,6 +44,20 @@
     <div id="ulContainer" class="flexbox-item flexbox-item-5"></div>
   </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="center hideform">
+    <button id="close" style="float: right;">X</button>
+    <form action="/action_page.php">
+        First name:<br>
+        <input type="text" name="firstname" value="Mickey">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" value="Mouse">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<button id="show">Show form</button>
   <footer></footer>
 </body>
 </html>
