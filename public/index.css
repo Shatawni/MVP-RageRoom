@@ -110,8 +110,8 @@ li {
 }
 
 #memeContainer {
-  position: absolute;
+  /* position: absolute;
   bottom: 15px;
   left: 10px;
-  box-shadow: 25px 25px black;
+  box-shadow: 25px 25px black; */
 }
