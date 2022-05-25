@@ -83,6 +83,7 @@ li {
   cursor: zoom-in;
   border-radius: 35px;
   margin-left: 330px;
+  margin-bottom: 15px;
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
@@ -96,6 +97,7 @@ li {
   border-radius: 35px;
   cursor: wait;
   margin-left: 450px;
+  margin-bottom: 15px;
   padding: 25px;
   font-size: 22px;
   font-family: monospace;
