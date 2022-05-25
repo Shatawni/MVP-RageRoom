@@ -3,7 +3,6 @@ function loadPage() {
   var h1 = document.getElementById("secondH1");
   var divUl = document.getElementById("ulContainer");
   var divMeme = document.getElementById("memeContainer");
-  var divVideo = document.getElementById("musicVideo");
   var ul = document.createElement("ul");
   var button = document.getElementById("bestQuote");
 
