@@ -5,7 +5,8 @@ var body = document.querySelector("body");
   var ul = document.createElement("ul");
   var button = document.getElementById("roomsBtn");
   const customers = document.createElement("customersDiv");
-  // const li = document.createElement("customerListItem");
+ 
+  const server = "http://localhost:3001" // https://salty-chamber-96193.herokuapp.com/
 
 
   
@@ -22,7 +23,7 @@ var body = document.querySelector("body");
 
 async function getData() {
 //     try {
-        const result = await fetch("http://localhost:3001/api/customers");
+        const result = await fetch(`${server}/api/customers`);
         const data = await result.json();
         console.log(data); 
         let customerObj = {};
@@ -40,8 +41,8 @@ async function getData() {
 //           roomli.setAttribute("class", "roomList")
 //           timeli.setAttribute("class", "timeList")
            const customerUl = document.createElement("ul");
-           customerUl.innerText = current;
-          
+           customerUl.innerText = `${current.groupname}, ${current.partysize}, ${current.roomcategory}, ${current.timeslot}`;
+          console.log(customerUl)
           var divUl = document.createElement("div");
           divUl.setAttribute("class", "divUl")
           divUl.appendChild(customerUl)
@@ -88,7 +89,7 @@ async function createCustomer() {
     timeslot: time
   }
   try {
-    const result = await fetch("http://localhost:3001/api/customers", {
+    const result = await fetch(`${server}/api/customers`, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(newCustomer)
@@ -101,7 +102,7 @@ async function createCustomer() {
 }
 
 function updateCustomers(id, data) {
-  fetch(`http://localhost:3001/api/customers/:${id}`, {
+  fetch(`${server}/api/customers/:${id}`, {
     method: 'PATCH',
     body: JSON.stringify({
      data
@@ -114,17 +115,18 @@ function updateCustomers(id, data) {
     console.error(err)
   });
 }
-    //     async function deleteCustomer(id) {
-    //     const response = await fetch((`http://localhost:3001/api/customers/:${id}`), {
-          
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Content-type': 'application/json'
-    //         }
-      
-    //     // Awaiting for the resource to be deleted
-    //     console.error(error)
+        async function deleteCustomer(id) {
+          try {
+        const response = await fetch((`${server}/api/customers/:${id}`), {
+          //try {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            }
+          })
+        // Awaiting for the resource to be deleted
+           } catch (error) {
+        console.error(error)
+          }
+    }
   
-    //     // Return response data 
-    //     return resData;
-    // }
