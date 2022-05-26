@@ -55,6 +55,12 @@ background-image: url("https://www.success.com/wp-content/uploads/legacy/sites/d
   background-color: rgb(155, 155, 225);
 }
 
+#delete:hover {
+  opacity: 1;
+  color: lavender;
+  background-color: rgb(155, 155, 225);
+}
+
 .btn-cancel {
   background-color: rgb(211, 33, 33);
 }
@@ -162,10 +168,11 @@ background-image: url("https://www.success.com/wp-content/uploads/legacy/sites/d
   margin-top: -15px;
 }
 
-/* ul {
+ ul {
   border: 5px;
+  border-style: solid;
   border-color: rgb(172, 172, 229);
-  margin-left: -15px;
+  margin-left: 15px;
   margin-top: 100px;
   padding: -15px;
 }
@@ -174,10 +181,10 @@ li {
   margin: 5px;
   font-size: 25px;
   font-weight: bold;
-  background-color: rgb(222, 183, 132);
+  background-color: rgb(172, 172, 229);
   border-style: solid;
-  border-color: maroon;
-} */
+  border-color: rgb(200, 20, 188);
+} 
 
 #roomsBtn {
   background-color: rgb(172, 172, 229);
