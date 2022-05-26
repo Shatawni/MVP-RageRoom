@@ -8,9 +8,9 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 
-app.get("/api/customers", async (req, res) => {
+app.get("http://localhost:3001/api/customers", async (req, res) => {
   try {
-    await pool.connect()
+   pool.connect()
     const data = await pool.query("SELECT * FROM customers;");
     res.send(data.rows);
   } catch (err) {
@@ -27,20 +27,22 @@ app.get("/api/customer/:id", async (req, res) => {
   }
 });
 
-app.post("/api/customers", async (req, res) => {
-  try {
-    const data = await pool.query(
-      "INSERT INTO customers(groupname, partysize, roomcategory, timeslot) VALUES($1, $2, $3, $4)",
+app.post("http://localhost:3001/api/customers", async (req, res) => {
+ try {
+    const data = await pool.query("INSERT INTO customers(groupname, partysize, roomcategory, timeslot) VALUES($1, $2, $3, $4)",
       [req.body.groupname, req.body.partysize, req.body.roomcategory, req.body.timeslot]
     );
+    console.log("past sql")
     res.send(req.body);
+  
   } catch (err) {
     console.error(err);
   }
 });
 
-app.patch('/api/customers/:id', async (req, res) => {
+app.patch("https://salty-chamber-96193.herokuapp.com/api/customers/:id", async (req, res) => {
     try {
+      
         const { groupname, partysize, roomcategory, timeslot } = req.body;
         console.log(req.params)
          const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [parseInt(req.params.id)]);       
@@ -60,6 +62,7 @@ app.patch('/api/customers/:id', async (req, res) => {
 app.delete("/api/customers/:id", async (req, res) => {
   
   try {
+    await pool.connect();
     const data = await pool.query("DELETE FROM customers WHERE id = $1;", [
       req.params.id,
     ]);
