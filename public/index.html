@@ -52,7 +52,7 @@
         <input id="group" type="text" placeholder="Enter Group name" value="">
         <br>
         Party size:<br>
-        <input id="party" type="number" placeholder="Choose Party size" step="1" id="theSize" min="1" max="4">
+        <input id="party" type="number" placeholder="Choose Party size" step="1" min="1" max="4">
         <br>
         Room Category:<br>
         <input id="room" type="text" placeholder="Kitchen, Bedroom, Living room, or Bathroom" value="">
@@ -60,7 +60,7 @@
         Time Slot:<br>
         <input id="time" type="number" placeholder="Choose duration" step="30" id="theNumber" min="30" max="90">
         <br><br>
-        <input id="submit" type="submit" value="Submit">
+        <input id="submit" onclick="createCustomer(); getData(); " type="submit" value="Submit">
     </form>
 </div>
 <div class="form-popup" id="updateForm">

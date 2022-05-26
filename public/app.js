@@ -10,6 +10,7 @@ var body = document.querySelector("body");
   const server = "http://localhost:3006" // https://salty-chamber-96193.herokuapp.com/
 
 
+document.getElementById("visitorsBtn").addEventListener("click", getData);
   
   document.getElementById("visitorsBtn").addEventListener("click", getData);
   document.getElementById("form").addEventListener("submit", (e) => {
