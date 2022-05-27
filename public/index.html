@@ -47,7 +47,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="form-popup" id="myForm">
     <button type="button" class="btn-cancel" style="float: right;" onclick="closeForm()">X</button>
-    <form action="/api/customers" class="form-container">
+    <form id="form" action="/api/customers" class="form-container">
         Group name:<br>
         <input id="group" type="text" placeholder="Enter Group name" value="">
         <br>
@@ -63,6 +63,25 @@
         <input id="submit" type="submit" value="Submit">
     </form>
 </div>
+<div class="form-popup" id="updateForm">
+    <button type="button" class="btn-cancel" style="float: right;" onclick="closeForm()">X</button>
+    <form id="updateform" action="/api/customers" class="form-container">
+        Group name:<br>
+        <input id="updategroup" type="text" placeholder="Enter Group name" value="">
+        <br>
+        Party size:<br>
+        <input id="updateparty" type="number" placeholder="Choose Party size" step="1" id="theSize" min="1" max="4">
+        <br>
+        Room Category:<br>
+        <input id="updateroom" type="text" placeholder="Kitchen, Bedroom, Living room, or Bathroom" value="">
+        <br>
+        Time Slot:<br>
+        <input id="updatetime" type="number" placeholder="Choose duration" step="30" id="theNumber" min="30" max="90">
+        <br><br>
+        <input id="updatesubmit" type="submit" value="Submit">
+    </form>
+</div>
+
   <footer></footer>
 </body>
 </html>

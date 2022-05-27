@@ -119,6 +119,16 @@ background-image: url("https://www.success.com/wp-content/uploads/legacy/sites/d
   margin-right: 15px;
 }
 
+.updateBtn {
+  color: lavender;
+  background-color: rgb(200, 20, 188);
+}
+
+.deleteBtn {
+  color: lavender;
+  background-color: rgb(200, 20, 188);
+}
+
 #picOne {
   margin-right: 3rem;
   border-color: rgb(205, 205, 242);
@@ -175,6 +185,7 @@ background-image: url("https://www.success.com/wp-content/uploads/legacy/sites/d
   margin-left: 15px;
   margin-top: 100px;
   padding: -15px;
+  background-color: rgb(200, 20, 188)s;
 }
 
 li {

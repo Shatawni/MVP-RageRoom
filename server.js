@@ -14,18 +14,17 @@ app.get("/api/customers", async (req, res) => {
     const data = await pool.query("SELECT * FROM customers;");
     res.send(data.rows);
   } catch (err) {
-    console.error(err.message);
+    //console.error(err);
   }
 });
 
-app.get("/api/customers/:id", async (req, res) => {
+app.get("/api/customer/:id", async (req, res) => {
   try {
-    const data = await pool.query("SELECT * FROM customers WHERE id = $1;", [
-      req.params.id,
-    ]);
-    res.send(data.rows);
+    //console.log(req.params.id)
+    const data = await pool.query("SELECT * FROM customers WHERE id=$1;", [parseInt(req.params.id)]);
+    res.json(data.rows[0]);
   } catch (err) {
-    console.error(err.message);
+    //console.error(err);
   }
 });
 
@@ -37,20 +36,21 @@ app.post("/api/customers", async (req, res) => {
     );
     res.send(req.body);
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
   }
 });
 
 app.patch('/api/customers/:id', async (req, res) => {
     try {
         const { groupname, partysize, roomcategory, timeslot } = req.body;
-         const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [req.params.id]);
-         console.log(data.rows[0])
+        console.log(req.params)
+         const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [parseInt(req.params.id)]);
+         //console.log(data.rows[0])
         const updateDB = {
             groupname: groupname || data.rows[0].groupname,
-            partysize: partysize || data.rows[0].partysize,
+            partysize: parseInt(partysize) || data.rows[0].partysize,
             roomcategory: roomcategory || data.rows[0].roomcategory,
-            timeslot: timeslot || data.rows[0].timeslot
+            timeslot: parseInt(timeslot) || data.rows[0].timeslot
         }
         const updateCustomers = await pool.query(`UPDATE customers SET groupname = $1, partysize = $2, roomcategory = $3, timeslot = $4 WHERE id = $5 RETURNING *`, [updateDB.groupname, updateDB.partysize, updateDB.roomcategory, updateDB.timeslot, req.params.id])
         res.json(updateCustomers.rows[0])
@@ -61,13 +61,14 @@ app.patch('/api/customers/:id', async (req, res) => {
 
 
 app.delete("/api/customers/:id", async (req, res) => {
+  
   try {
     const data = await pool.query("DELETE FROM customers WHERE id = $1;", [
       req.params.id,
     ]);
     res.send(data.rows);
   } catch (err) {
-    console.error(err.message);
+    //console.error(err.message);
   }
 });
 

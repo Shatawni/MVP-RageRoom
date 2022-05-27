@@ -5,14 +5,25 @@ var body = document.querySelector("body");
   var ul = document.createElement("ul");
   var button = document.getElementById("roomsBtn");
   const customers = document.createElement("customersDiv");
+  
  
   const server = "http://localhost:3001" // https://salty-chamber-96193.herokuapp.com/
 
 
   
   document.getElementById("visitorsBtn").addEventListener("click", getData);
-  document.getElementById("submit").addEventListener("click", createCustomer);
-//document.querySelector("#delete").addEventListener("click", deleteCustomer);
+  document.getElementById("form").addEventListener("submit", (e) => {
+    e.preventDefault()
+createCustomers();
+  });
+  document.getElementById("updateform").addEventListener("submit", (e) => {
+    e.preventDefault()
+    const id = document.getElementsByClassName("update");
+    updateCustomers(id[0].id)
+closeUpdateForm()
+
+  });
+
 
     function openForm() {
     document.getElementById("myForm").style.display = "block ";
@@ -21,110 +32,140 @@ var body = document.querySelector("body");
     document.getElementById("myForm").style.display = "none";
   }
 
+   function openUpdateForm() {
+    document.getElementById("updateForm").style.display = "block ";
+  }
+  function closeUpdateForm() {
+    document.getElementById("updateForm").style.display = "none";
+  }
+
 async function getData() {
-//     try {
+
         const result = await fetch(`${server}/api/customers`);
         const data = await result.json();
         console.log(data); 
-        let customerObj = {};
+       const divUl = document.createElement("div");
+          divUl.setAttribute("class", "divUl")
+          divUl.setAttribute("id", "divUl")
         for(let i = 0; i < data.length; i++) {
           const current = data[i];
-          //customerObj = JSON.parse(current);
           console.log(current)
-
-//           const groupli = document.createElement("li");
-//           const partyli = document.createElement("li");
-//           const roomli = document.createElement("li");
-//           const timeli = document.createElement("li");
-//           groupli.setAttribute("class", "groupList")
-//           partyli.setAttribute("class", "partyList")
-//           roomli.setAttribute("class", "roomList")
-//           timeli.setAttribute("class", "timeList")
            const customerUl = document.createElement("ul");
+           customerUl.setAttribute("id", current.id)
            customerUl.innerText = `${current.groupname}, ${current.partysize}, ${current.roomcategory}, ${current.timeslot}`;
-          console.log(customerUl)
-          var divUl = document.createElement("div");
-          divUl.setAttribute("class", "divUl")
+           console.log(customerUl)
+          
           divUl.appendChild(customerUl)
-          document.body.appendChild(divUl)
-          console.log(divUl)
-//           groupli.innerText = data[i].groupname;
-//           partyli.innerText = data[i].partysize;
-//           roomli.innerText = data[i].roomcategory;
-//           timeli.innerText = data[i].timeslot;
-//           customerUl.append(groupli);
-// customerUl.append(partyli);
-// customerUl.append(roomli);
-// customerUl.append(timeli);
-// divUl.append(customerUl);
-// document.body.append(divUl);
-
-//           divUl.addEventListener("click", (e) => {
-//             var current = e.target;
-//             console.log(current)
-//             if(current) 
-//     var newDivContainer = document.createElement("div");
-//     newDivContainer.setAttribute("class", "newDiv");
-//     newDivContainer.innerText = current;
-//     console.log(newDivContainer)
-//     document.body.append("newDivContainer")
-//     divUl.remove()
-//           });
-
-    }
-//     } catch (error) {
-//         console.error(error)
-//     }
-  }
-
-async function createCustomer() {
-  const group = document.getElementById("group").value;
-  const party = document.getElementById("party").value;
-  const room = document.getElementById("room").value;
-  const time = document.getElementById("time").value;
-  const newCustomer = {
-    groupname: group,
-    partysize: party,
-    roomcategory: room,
-    timeslot: time
-  }
-  try {
-    const result = await fetch(`${server}/api/customers`, {
-    method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newCustomer)
-  })
-  const data = await result.json()
-  console.log(data)
-} catch (error) {
-    console.error(error)
-}
-}
-
-function updateCustomers(id, data) {
-  fetch(`${server}/api/customers/:${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-     data
-    })
-  }).then((response) => {
-    response.json().then((response) => {
-      console.log(response);
-    })
-  }).catch(err => {
-    console.error(err)
-  });
-}
-        async function deleteCustomer(id) {
-          try {
-        const response = await fetch((`${server}/api/customers/:${id}`), {
-          //try {
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json'
-            }
+         
+          customerUl.addEventListener("click", (e) => {
+             hideDivUl();
+            getOneCustomer(e)
           })
-        // Awaiting for the resource to be deleted
+    }
+    ulContainer.appendChild(divUl)
+   document.body.appendChild(ulContainer)
+          console.log(divUl)
+  }
+
+  async function createCustomers() {
+     const dataObj = {
+  groupname: `${document.getElementById("group").value}`,
+       partysize: `${document.getElementById("party").value}`,
+       roomcategory: `${document.getElementById("room").value}`,
+       timeslot: `${document.getElementById("time").value}`
+  }
+ const res = await fetch(`${server}/api/customers`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(dataObj)
+  })
+    const data = await res.json()
+    closeForm()
+  }
+
+
+async function getOneCustomer(e) {
+  console.log(e.target.id)
+     const result = await fetch(`${server}/api/customer/${e.target.id}`)
+    console.log(e.target.id)
+     const newDivUl = document.createElement("div");
+     newDivUl.setAttribute("id", "newDivUl");
+    console.log(newDivUl)
+     const data = await result.json()
+      console.log(data)
+      const customerUl = document.createElement("ul");
+           customerUl.setAttribute("id", data.id)
+           customerUl.innerText = `${data.groupname}, ${data.partysize}, ${data.roomcategory}, ${data.timeslot}`;
+           console.log(customerUl)
+           const updateBtn = document.createElement("button");
+           updateBtn.classList.add("update");
+           updateBtn.setAttribute("id", data.id)
+           console.log(updateBtn.id)
+           updateBtn.innerText = "UPDATE";
+            const deleteBtn = document.createElement("button");
+           deleteBtn.classList.add("delete");
+           deleteBtn.innerText = "DELETE";
+           customerUl.appendChild(updateBtn)
+            customerUl.appendChild(deleteBtn)
+          newDivUl.appendChild(customerUl)
+          ulContainer.appendChild(newDivUl)
+          document.body.appendChild(newDivUl)
+
+          updateBtn.addEventListener("click", (e) => {
+            openUpdateForm();
+          })
+
+             deleteBtn.addEventListener("click", (e) => {
+            deleteCustomer(data.id);
+            newDivUl.remove()
+            
+          })
+         
+}
+
+function hideDivUl(){
+  const divUl = document.getElementById("divUl");
+  divUl.remove()
+}
+
+function hideNewDivUl(){
+  const newDivUl = document.getElementById("newDivUl");
+  newDivUl.remove()
+}
+
+async function updateCustomers(id) {
+  const dataObj = {
+  groupname: `${document.getElementById("updategroup").value}`,
+       partysize: `${document.getElementById("updateparty").value}`,
+       roomcategory: `${document.getElementById("updateroom").value}`,
+       timeslot: `${document.getElementById("updatetime").value}`
+  }
+ await fetch(`${server}/api/customers/${id}`, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(dataObj)
+  })
+  .then((response) => response.json())
+    .then((data) => console.log(data))
+  .catch(err => console.error(err))
+  hideNewDivUl();
+}
+
+
+        async function deleteCustomer(id) {
+          console.log(id)
+          try {
+        const response = await fetch(`${server}/api/customers/${id}`, {
+            method: 'DELETE',
+            }
+        )
+           const result = await response.json()
+           console.log(result)
+          
            } catch (error) {
         console.error(error)
           }
