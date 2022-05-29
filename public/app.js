@@ -6,7 +6,8 @@ var ul = document.createElement("ul");
 var button = document.getElementById("roomsBtn");
 const customers = document.createElement("customersDiv");
 
-const server = "http://localhost:3006"; // https://salty-chamber-96193.herokuapp.com/
+const server = window.location.origin;
+console.log(window.location.origin);
 
 document.getElementById("visitorsBtn").addEventListener("click", getData);
 
