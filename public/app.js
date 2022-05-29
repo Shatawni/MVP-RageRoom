@@ -7,7 +7,7 @@ var body = document.querySelector("body");
   const customers = document.createElement("customersDiv");
   
  
-  const server = "http://localhost:3001" // https://salty-chamber-96193.herokuapp.com/
+  const server = "http://localhost:3006" // https://salty-chamber-96193.herokuapp.com/
 
 
   
@@ -15,6 +15,7 @@ var body = document.querySelector("body");
   document.getElementById("form").addEventListener("submit", (e) => {
     e.preventDefault()
 createCustomers();
+getData();
   });
   document.getElementById("updateform").addEventListener("submit", (e) => {
     e.preventDefault()
@@ -40,8 +41,7 @@ closeUpdateForm()
   }
 
 async function getData() {
-
-        const result = await fetch(`${server}/api/customers`);
+ const result = await fetch(`${server}/api/customers`);
         const data = await result.json();
         console.log(data); 
        const divUl = document.createElement("div");
@@ -97,6 +97,7 @@ async function getOneCustomer(e) {
       console.log(data)
       const customerUl = document.createElement("ul");
            customerUl.setAttribute("id", data.id)
+           customerUl.classList.add("ul")
            customerUl.innerText = `${data.groupname}, ${data.partysize}, ${data.roomcategory}, ${data.timeslot}`;
            console.log(customerUl)
            const updateBtn = document.createElement("button");
@@ -115,6 +116,7 @@ async function getOneCustomer(e) {
 
           updateBtn.addEventListener("click", (e) => {
             openUpdateForm();
+            hideDivUl()
           })
 
              deleteBtn.addEventListener("click", (e) => {

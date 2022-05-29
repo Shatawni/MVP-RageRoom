@@ -14,17 +14,16 @@ app.get("/api/customers", async (req, res) => {
     const data = await pool.query("SELECT * FROM customers;");
     res.send(data.rows);
   } catch (err) {
-    //console.error(err);
+   console.error(err);
   }
 });
 
 app.get("/api/customer/:id", async (req, res) => {
   try {
-    //console.log(req.params.id)
     const data = await pool.query("SELECT * FROM customers WHERE id=$1;", [parseInt(req.params.id)]);
     res.json(data.rows[0]);
   } catch (err) {
-    //console.error(err);
+   console.error(err);
   }
 });
 
@@ -44,10 +43,9 @@ app.patch('/api/customers/:id', async (req, res) => {
     try {
         const { groupname, partysize, roomcategory, timeslot } = req.body;
         console.log(req.params)
-         const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [parseInt(req.params.id)]);
-         //console.log(data.rows[0])
-        const updateDB = {
-            groupname: groupname || data.rows[0].groupname,
+         const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [parseInt(req.params.id)]);       
+          const updateDB = {           
+             groupname: groupname || data.rows[0].groupname,
             partysize: parseInt(partysize) || data.rows[0].partysize,
             roomcategory: roomcategory || data.rows[0].roomcategory,
             timeslot: parseInt(timeslot) || data.rows[0].timeslot
@@ -59,7 +57,6 @@ app.patch('/api/customers/:id', async (req, res) => {
     }
 })
 
-
 app.delete("/api/customers/:id", async (req, res) => {
   
   try {
@@ -68,7 +65,6 @@ app.delete("/api/customers/:id", async (req, res) => {
     ]);
     res.send(data.rows);
   } catch (err) {
-    //console.error(err.message);
   }
 });
 
