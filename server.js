@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const pool = require("./database/conn.js");
-const database = require("./database/conn.js");
+// const database = require("./database/conn.js");
 const app = express();
 
 app.use(express.static("public"));
