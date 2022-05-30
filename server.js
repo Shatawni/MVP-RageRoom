@@ -7,11 +7,11 @@ const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 
-app.get("http://localhost:3001/api/customers", async (req, res) => {
+app.get("/api/customers", async (req, res) => {
   try {
     pool.connect();
     const data = await pool.query("SELECT * FROM customers;");
-    res.send(data.rows);
+    res.json(data.rows);
   } catch (err) {
     console.error(err);
   }
@@ -28,7 +28,7 @@ app.get("/api/customer/:id", async (req, res) => {
   }
 });
 
-app.post("http://localhost:3001/api/customers", async (req, res) => {
+app.post("/api/customers", async (req, res) => {
   try {
     const data = await pool.query(
       "INSERT INTO customers(groupname, partysize, roomcategory, timeslot) VALUES($1, $2, $3, $4)",
@@ -39,44 +39,40 @@ app.post("http://localhost:3001/api/customers", async (req, res) => {
         req.body.timeslot,
       ]
     );
-    console.log("past sql");
     res.send(req.body);
   } catch (err) {
     console.error(err);
   }
 });
 
-app.patch(
-  "https://salty-chamber-96193.herokuapp.com/api/customers/:id",
-  async (req, res) => {
-    try {
-      const { groupname, partysize, roomcategory, timeslot } = req.body;
-      console.log(req.params);
-      const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [
-        parseInt(req.params.id),
-      ]);
-      const updateDB = {
-        groupname: groupname || data.rows[0].groupname,
-        partysize: parseInt(partysize) || data.rows[0].partysize,
-        roomcategory: roomcategory || data.rows[0].roomcategory,
-        timeslot: parseInt(timeslot) || data.rows[0].timeslot,
-      };
-      const updateCustomers = await pool.query(
-        `UPDATE customers SET groupname = $1, partysize = $2, roomcategory = $3, timeslot = $4 WHERE id = $5 RETURNING *`,
-        [
-          updateDB.groupname,
-          updateDB.partysize,
-          updateDB.roomcategory,
-          updateDB.timeslot,
-          req.params.id,
-        ]
-      );
-      res.json(updateCustomers.rows[0]);
-    } catch (err) {
-      console.error(err.message);
-    }
+app.patch("/api/customers/:id", async (req, res) => {
+  try {
+    const { groupname, partysize, roomcategory, timeslot } = req.body;
+    console.log(req.params);
+    const data = await pool.query(`SELECT * FROM customers WHERE id = $1`, [
+      parseInt(req.params.id),
+    ]);
+    const updateDB = {
+      groupname: groupname || data.rows[0].groupname,
+      partysize: parseInt(partysize) || data.rows[0].partysize,
+      roomcategory: roomcategory || data.rows[0].roomcategory,
+      timeslot: parseInt(timeslot) || data.rows[0].timeslot,
+    };
+    const updateCustomers = await pool.query(
+      `UPDATE customers SET groupname = $1, partysize = $2, roomcategory = $3, timeslot = $4 WHERE id = $5 RETURNING *`,
+      [
+        updateDB.groupname,
+        updateDB.partysize,
+        updateDB.roomcategory,
+        updateDB.timeslot,
+        req.params.id,
+      ]
+    );
+    res.json(updateCustomers.rows[0]);
+  } catch (err) {
+    console.error(err);
   }
-);
+});
 
 app.delete("/api/customers/:id", async (req, res) => {
   try {
@@ -84,7 +80,7 @@ app.delete("/api/customers/:id", async (req, res) => {
     const data = await pool.query("DELETE FROM customers WHERE id = $1;", [
       req.params.id,
     ]);
-    res.send(data.rows);
+    res.json(data.rows);
   } catch (err) {}
 });
 

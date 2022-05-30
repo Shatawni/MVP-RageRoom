@@ -1,6 +1,5 @@
 var body = document.querySelector("body");
 var h1 = document.getElementById("secondH1");
-
 var divMeme = document.getElementById("memeContainer");
 var ul = document.createElement("ul");
 var button = document.getElementById("roomsBtn");
@@ -10,11 +9,9 @@ const server = window.location.origin;
 console.log(window.location.origin);
 
 document.getElementById("visitorsBtn").addEventListener("click", getData);
-
-document.getElementById("visitorsBtn").addEventListener("click", getData);
 document.getElementById("form").addEventListener("submit", (e) => {
   e.preventDefault();
-  createCustomers();
+  createCustomer();
   getData();
 });
 document.getElementById("updateform").addEventListener("submit", (e) => {
@@ -39,7 +36,7 @@ function closeUpdateForm() {
 }
 
 async function getData() {
-  const result = await fetch(`${server}/api/customers`);
+  const result = await fetch("/api/customers");
   const data = await result.json();
   console.log(data);
   const divUl = document.createElement("div");
@@ -52,35 +49,37 @@ async function getData() {
     customerUl.setAttribute("id", current.id);
     customerUl.innerText = `${current.groupname}, ${current.partysize}, ${current.roomcategory}, ${current.timeslot}`;
     console.log(customerUl);
-
     divUl.appendChild(customerUl);
 
     customerUl.addEventListener("click", (e) => {
       hideDivUl();
       getOneCustomer(e);
     });
+
+    divUl.appendChild(customerUl);
+    document.body.appendChild(divUl);
+    console.log(divUl);
   }
-  ulContainer.appendChild(divUl);
-  document.body.appendChild(ulContainer);
-  console.log(divUl);
 }
 
-async function createCustomers() {
+async function createCustomer() {
   const dataObj = {
     groupname: `${document.getElementById("group").value}`,
     partysize: `${document.getElementById("party").value}`,
     roomcategory: `${document.getElementById("room").value}`,
     timeslot: `${document.getElementById("time").value}`,
   };
-  const res = await fetch(`${server}/api/customers`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(dataObj),
-  });
-  const data = await res.json();
-  closeForm();
+  try {
+    const res = await fetch(`${server}/api/customers`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dataObj),
+    });
+    const data = await res.json();
+    closeForm();
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 async function getOneCustomer(e) {
@@ -149,6 +148,7 @@ async function updateCustomers(id) {
     .then((response) => response.json())
     .then((data) => console.log(data))
     .catch((err) => console.error(err));
+  closeForm();
   hideNewDivUl();
 }
 
