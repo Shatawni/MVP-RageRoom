@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS rageroomdb;
-DROP TABLE IF EXISTS customers;
+-- DROP DATABASE IF EXISTS rageroomdb;
+-- DROP TABLE IF EXISTS customers;
 
-CREATE DATABASE rageroomdb;
+-- CREATE DATABASE rageroomdb;
 
-\c rageroomdb
+-- \c rageroomdb
 
 CREATE TABLE customers(
    id SERIAL PRIMARY KEY,
